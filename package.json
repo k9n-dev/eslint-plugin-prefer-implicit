@@ -1,6 +1,6 @@
 {
   "name": "@k9n/eslint-plugin-prefer-implicit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ESLint plugin that enforces implicit HTML semantics over explicit ARIA attributes and roles",
   "type": "module",
   "main": "dist/index.js",

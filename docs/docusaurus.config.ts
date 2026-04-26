@@ -68,7 +68,7 @@ const config: Config = {
         },
         {
           type: 'dropdown',
-          label: 'v0.1.0',
+          label: 'v0.1.1',
           position: 'right',
           items: [
             {
