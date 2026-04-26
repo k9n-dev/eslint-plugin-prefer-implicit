@@ -4,7 +4,7 @@ Thanks for your interest in contributing to `eslint-plugin-prefer-implicit`! Thi
 
 ## Prerequisites
 
-- **Node.js** >= 20
+- **Node.js** >= 24
 - **npm** (comes with Node.js)
 
 ## Setup
