@@ -34,6 +34,11 @@
     "vitest": "^4.1.5"
   },
   "license": "MIT",
+  "author": {
+    "name": "Danny Koppenhagen",
+    "url": "https://github.com/d-koppenhagen"
+  },
+  "homepage": "https://k9n-dev.github.io/eslint-plugin-prefer-implicit/",
   "repository": {
     "type": "git",
     "url": "https://github.com/k9n-dev/eslint-plugin-prefer-implicit.git"
