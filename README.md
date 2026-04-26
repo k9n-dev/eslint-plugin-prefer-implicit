@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.svg" alt="eslint-plugin-prefer-implicit" width="120" />
+</p>
+
 # eslint-plugin-prefer-implicit
 
 > Prefer implicit semantics over explicit ARIA and roles.

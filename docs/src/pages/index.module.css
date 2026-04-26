@@ -1,0 +1,101 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  padding: 6rem 2rem 4rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.heroContent {
+  flex: 1;
+}
+
+.heroLogo {
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.titleAccent {
+  color: var(--ifm-color-primary);
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 2rem 6rem;
+}
+
+.feature {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.featureEmoji {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-600);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2rem;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .logo {
+    width: 140px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.5rem 4rem;
+  }
+}

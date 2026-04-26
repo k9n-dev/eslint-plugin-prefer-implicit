@@ -18,7 +18,10 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest run",
-    "lint": "eslint"
+    "lint": "eslint",
+    "docs:install": "npm install --prefix docs",
+    "docs:start": "npm start --prefix docs",
+    "docs:build": "npm run build --prefix docs"
   },
   "peerDependencies": {
     "eslint": "^10.0.0"
@@ -33,7 +36,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/user/eslint-plugin-prefer-implicit.git"
+    "url": "https://github.com/k9n-dev/eslint-plugin-prefer-implicit.git"
   },
   "keywords": [
     "eslint",

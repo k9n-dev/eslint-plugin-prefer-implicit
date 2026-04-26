@@ -6,3 +6,8 @@ dist/
 coverage/
 .DS_Store
 *.log
+
+# Docs
+docs/build/
+docs/.docusaurus/
+docs/node_modules/

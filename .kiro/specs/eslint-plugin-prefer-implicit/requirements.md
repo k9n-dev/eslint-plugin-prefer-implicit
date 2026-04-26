@@ -139,7 +139,7 @@ This document defines the requirements for `eslint-plugin-prefer-implicit`, an E
 2. THE Plugin SHALL analyze Vue single-file component `<template>` blocks when used with an appropriate ESLint parser (e.g., `vue-eslint-parser`)
 3. THE Plugin SHALL analyze Angular template syntax when used with an appropriate ESLint parser (e.g., `angular-eslint`)
 4. THE Plugin SHALL analyze plain HTML files when used with an appropriate ESLint HTML parser
-5. WHEN a framework uses a binding syntax for an attribute value (e.g., `:aria-hidden`, `[attr.aria-hidden]`, `{expression}`), THE Rule_Engine SHALL treat the attribute as a Dynamic_Value and skip analysis
+5. WHEN a framework uses a binding syntax for an attribute value (e.g., `:aria-hidden`, `[aria-hidden]`, `{expression}`), THE Rule_Engine SHALL treat the attribute as a Dynamic_Value and skip analysis
 
 ### Requirement 10: Static vs Dynamic Value Detection
 
@@ -150,7 +150,7 @@ This document defines the requirements for `eslint-plugin-prefer-implicit`, an E
 1. WHEN an attribute value is a string literal (e.g., `aria-hidden="false"`), THE AST_Analyzer SHALL classify the value as a Static_Value
 2. WHEN an attribute value is a Vue binding (e.g., `:aria-hidden="isHidden"`), THE AST_Analyzer SHALL classify the value as a Dynamic_Value
 3. WHEN an attribute value is a JSX expression (e.g., `aria-hidden={condition}`), THE AST_Analyzer SHALL classify the value as a Dynamic_Value
-4. WHEN an attribute value is an Angular binding (e.g., `[attr.aria-hidden]="isHidden"`), THE AST_Analyzer SHALL classify the value as a Dynamic_Value
+4. WHEN an attribute value is an Angular binding (e.g., `[aria-hidden]="isHidden"`), THE AST_Analyzer SHALL classify the value as a Dynamic_Value
 5. WHEN a value is classified as a Dynamic_Value, THE Autofix_Engine SHALL not generate a fix for that attribute
 
 ### Requirement 11: Testing Coverage
