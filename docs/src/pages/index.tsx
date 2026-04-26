@@ -51,7 +51,7 @@ export default function Home(): React.JSX.Element {
           <div className={styles.heroLogo}>
             <img
               src={useBaseUrl('/img/logo.svg')}
-              alt="eslint-plugin-prefer-implicit logo"
+              alt="@k9n/eslint-plugin-prefer-implicit logo"
               className={styles.logo}
             />
           </div>

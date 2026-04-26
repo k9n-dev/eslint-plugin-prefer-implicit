@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to `eslint-plugin-prefer-implicit`! This guide covers everything you need to get started.
+Thanks for your interest in contributing to `@k9n/eslint-plugin-prefer-implicit`! This guide covers everything you need to get started.
 
 ## Prerequisites
 

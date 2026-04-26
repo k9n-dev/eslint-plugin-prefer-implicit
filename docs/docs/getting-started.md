@@ -1,6 +1,6 @@
 # Getting Started
 
-**eslint-plugin-prefer-implicit** is an ESLint plugin that enforces implicit HTML semantics over explicit ARIA attributes and roles.
+**@k9n/eslint-plugin-prefer-implicit** is an ESLint plugin that enforces implicit HTML semantics over explicit ARIA attributes and roles.
 
 > **If the browser already knows it, don't repeat it.**
 
@@ -16,7 +16,7 @@ Modern HTML already provides rich, implicit semantics. However, many codebases a
 ## Installation
 
 ```bash
-npm install --save-dev eslint-plugin-prefer-implicit
+npm install --save-dev @k9n/eslint-plugin-prefer-implicit
 ```
 
 :::info
@@ -28,7 +28,7 @@ This plugin requires **ESLint ^10.0.0** with flat config.
 Use the recommended config to enable all six rules at `"warn"` severity:
 
 ```js title="eslint.config.js"
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 export default [preferImplicit.configs.recommended];
 ```

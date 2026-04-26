@@ -9,7 +9,7 @@ This plugin works with multiple frameworks and template syntaxes by operating on
 Works out of the box with ESLint's built-in JSX support.
 
 ```js title="eslint.config.js"
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 export default [
   {
@@ -28,7 +28,7 @@ export default [
 Works with `vue-eslint-parser` for `.vue` single-file component templates.
 
 ```js title="eslint.config.js"
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 import vueParser from "vue-eslint-parser";
 
 export default [
@@ -47,7 +47,7 @@ export default [
 Works with `angular-eslint` for Angular template syntax.
 
 ```js title="eslint.config.js"
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 // Use alongside your angular-eslint configuration
 ```

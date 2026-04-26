@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="logo.svg" alt="eslint-plugin-prefer-implicit" width="120" />
+  <img src="logo.svg" alt="Logo of the ESLint plugin: @k9n/eslint-plugin-prefer-implicit" width="120" />
 </p>
 
-# eslint-plugin-prefer-implicit
+# @k9n/eslint-plugin-prefer-implicit
 
 > Prefer implicit semantics over explicit ARIA and roles.
 
@@ -24,7 +24,7 @@ This plugin enforces a simple principle:
 ## Installation
 
 ```bash
-npm install --save-dev eslint-plugin-prefer-implicit
+npm install --save-dev @k9n/eslint-plugin-prefer-implicit
 ```
 
 > **Note:** This plugin requires ESLint ^10.0.0 with flat config.
@@ -37,7 +37,7 @@ The recommended config enables all six rules at `"warn"` severity:
 
 ```js
 // eslint.config.js
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 export default [preferImplicit.configs.recommended];
 ```
@@ -48,7 +48,7 @@ You can also configure individual rules:
 
 ```js
 // eslint.config.js
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 export default [
   {

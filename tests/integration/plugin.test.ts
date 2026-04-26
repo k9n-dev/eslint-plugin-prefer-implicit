@@ -22,7 +22,7 @@ describe("plugin entry point", () => {
   // Req 2.1: meta contains name and version
   it("meta contains name and version", () => {
     expect(plugin.meta).toBeDefined();
-    expect(plugin.meta!.name).toBe("eslint-plugin-prefer-implicit");
+    expect(plugin.meta!.name).toBe("@k9n/eslint-plugin-prefer-implicit");
     expect(plugin.meta!.version).toBe("0.1.0");
   });
 

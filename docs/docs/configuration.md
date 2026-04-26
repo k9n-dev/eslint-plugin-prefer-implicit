@@ -5,7 +5,7 @@
 The recommended config enables all six rules at `"warn"` severity:
 
 ```js title="eslint.config.js"
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 export default [preferImplicit.configs.recommended];
 ```
@@ -15,7 +15,7 @@ export default [preferImplicit.configs.recommended];
 You can configure individual rules and their severity:
 
 ```js title="eslint.config.js"
-import preferImplicit from "eslint-plugin-prefer-implicit";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 export default [
   {

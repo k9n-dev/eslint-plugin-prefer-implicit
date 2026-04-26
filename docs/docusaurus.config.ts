@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'eslint-plugin-prefer-implicit',
+  title: '@k9n/eslint-plugin-prefer-implicit',
   tagline: 'If the browser already knows it, don\'t repeat it.',
   favicon: 'img/logo.svg',
 
@@ -48,9 +48,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'eslint-plugin-prefer-implicit',
+      title: '@k9n/eslint-plugin-prefer-implicit',
       logo: {
-        alt: 'eslint-plugin-prefer-implicit logo',
+        alt: '@k9n/eslint-plugin-prefer-implicit logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -125,12 +125,12 @@ const config: Config = {
             },
             {
               label: 'npm',
-              href: 'https://www.npmjs.com/package/eslint-plugin-prefer-implicit',
+              href: 'https://www.npmjs.com/package/@k9n/eslint-plugin-prefer-implicit',
             },
           ],
         },
       ],
-      copyright: `Released under the MIT License. Copyright © ${new Date().getFullYear()} eslint-plugin-prefer-implicit.`,
+      copyright: `Released under the MIT License. Copyright © ${new Date().getFullYear()} @k9n/eslint-plugin-prefer-implicit.`,
     },
     prism: {
       theme: prismThemes.github,
