@@ -23,7 +23,7 @@ describe("plugin entry point", () => {
   it("meta contains name and version", () => {
     expect(plugin.meta).toBeDefined();
     expect(plugin.meta!.name).toBe("@k9n/eslint-plugin-prefer-implicit");
-    expect(plugin.meta!.version).toBe("0.1.1");
+    expect(plugin.meta!.version).toBe("0.1.2");
   });
 
   // Req 2.4: namespace is prefer-implicit

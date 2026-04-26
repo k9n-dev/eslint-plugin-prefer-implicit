@@ -10,7 +10,7 @@ import noHiddenFocusable from "./rules/no-hidden-focusable.js";
 const plugin: ESLint.Plugin = {
   meta: {
     name: "@k9n/eslint-plugin-prefer-implicit",
-    version: "0.1.1",
+    version: "0.1.2",
   },
   rules: {
     "no-redundant-role": noRedundantRole,
