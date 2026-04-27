@@ -22,7 +22,6 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          registry-url: https://registry.npmjs.org
 
       - run: npm ci
       - run: npm run build
@@ -32,8 +31,6 @@ jobs:
         uses: changesets/action@v1
         with:
           version: npx changeset version
-          # Expects a script that calls `changeset publish`.
-          # GitHub Releases are created automatically (createGithubReleases defaults to true).
           publish: npm run release
           title: "chore: version packages"
           commit: "chore: version packages"
