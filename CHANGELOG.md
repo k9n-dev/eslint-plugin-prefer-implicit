@@ -1,5 +1,11 @@
 # @k9n/eslint-plugin-prefer-implicit
 
+## 0.1.3
+
+### Patch Changes
+
+- fix: add support for CommonJS
+
 ## 0.1.2
 
 ### Patch Changes
