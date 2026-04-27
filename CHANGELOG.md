@@ -1,5 +1,11 @@
 # @k9n/eslint-plugin-prefer-implicit
 
+## 0.2.2
+
+### Patch Changes
+
+- [`ffb80e3`](https://github.com/k9n-dev/eslint-plugin-prefer-implicit/commit/ffb80e3ae00edea8045b2e5c91d9a38d353b4d2e) Thanks [@d-koppenhagen](https://github.com/d-koppenhagen)! - chore: dynamically load version from package.json
+
 ## 0.2.1
 
 ### Patch Changes
