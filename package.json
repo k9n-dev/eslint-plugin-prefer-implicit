@@ -22,6 +22,7 @@
     "build": "tsc",
     "test": "vitest run",
     "lint": "eslint",
+    "release": "changeset publish",
     "docs:install": "npm install --prefix docs",
     "docs:start": "npm start --prefix docs",
     "docs:build": "npm run build --prefix docs"
@@ -30,6 +31,7 @@
     "eslint": "^10.0.0"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.6.0",
     "@changesets/cli": "^2.31.0",
     "eslint": "^10.0.0",
     "fast-check": "^4.7.0",

@@ -1,5 +1,8 @@
 {
-  "changelog": "@changesets/cli/changelog",
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "k9n-dev/eslint-plugin-prefer-implicit" }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],

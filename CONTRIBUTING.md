@@ -136,25 +136,12 @@ This creates a markdown file in `.changeset/` — commit it with your PR.
 
 ## Release Process
 
-Releases are managed by maintainers:
+Releases are fully automated via GitHub Actions. When a PR with changesets is merged to `main`:
 
-```bash
-# 1. Apply changesets: bumps version in package.json, updates CHANGELOG.md
-npx changeset version
+1. The release workflow opens a **"chore: version packages"** PR that bumps versions and updates `CHANGELOG.md`.
+2. When a maintainer merges that PR, the workflow publishes to npm and creates a GitHub Release.
 
-# 2. Review the changes
-git diff
-
-# 3. Commit the version bump
-git add .
-git commit -m "chore: release v<version>"
-
-# 4. Publish to npm
-npx changeset publish
-
-# 5. Push the commit and tags
-git push --follow-tags
-```
+No manual steps needed — just make sure your PR includes a changeset.
 
 ## Code Style
 

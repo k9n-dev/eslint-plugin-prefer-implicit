@@ -1,8 +1,7 @@
 node_modules/
 dist/
 *.tsbuildinfo
-.changeset/*.md
-!.changeset/config.json
+
 coverage/
 .DS_Store
 *.log
