@@ -26,6 +26,13 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # Write .npmrc ourselves to avoid the outdated "always-auth" config
+      # that changesets/action and setup-node generate, which breaks npm 10+.
+      - name: Configure npm auth
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$HOME/.npmrc"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Create Release PR or Publish to npm
         id: changesets
         uses: changesets/action@v1
