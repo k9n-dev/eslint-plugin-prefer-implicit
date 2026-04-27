@@ -10,6 +10,7 @@ concurrency:
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
 
 jobs:
   release:
@@ -22,16 +23,10 @@ jobs:
         with:
           node-version: 24
           cache: npm
+          registry-url: https://registry.npmjs.org
 
       - run: npm ci
       - run: npm run build
-
-      # Write .npmrc ourselves to avoid the outdated "always-auth" config
-      # that changesets/action and setup-node generate, which breaks npm 10+.
-      - name: Configure npm auth
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$HOME/.npmrc"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Release PR or Publish to npm
         id: changesets
@@ -43,4 +38,3 @@ jobs:
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
