@@ -35,7 +35,7 @@ export default function Home(): React.JSX.Element {
               ESLint Plugin<br />
               <span className={styles.titleAccent}>Prefer Implicit</span>
             </h1>
-            <p className={styles.tagline}>
+            <p className={styles.description}>
               Modern HTML already provides rich, implicit semantics. However, many codebases add redundant or even harmful ARIA attributes and roles.
               This plugin enforces a simple principle:
             </p>
@@ -59,11 +59,11 @@ export default function Home(): React.JSX.Element {
 
         <section className={styles.features}>
           {features.map((f, i) => (
-            <div key={i} className={styles.feature}>
+            <article key={i} className={styles.feature}>
               <div className={styles.featureEmoji}>{f.emoji}</div>
               <h3>{f.title}</h3>
               <p>{f.description}</p>
-            </div>
+            </article>
           ))}
         </section>
       </main>

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg" alt="Logo of the ESLint plugin: @k9n/eslint-plugin-prefer-implicit" width="120" />
+  <img src="https://k9n-dev.github.io/eslint-plugin-prefer-implicit/img/logo.svg" alt="Logo of the ESLint plugin: @k9n/eslint-plugin-prefer-implicit" width="120" />
 </p>
 
 # @k9n/eslint-plugin-prefer-implicit

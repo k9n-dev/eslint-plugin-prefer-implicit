@@ -7,7 +7,7 @@ const require = createRequire(import.meta.url);
 const {version} = require('../package.json') as {version: string};
 
 const config: Config = {
-  title: '@k9n/eslint-plugin-prefer-implicit',
+  title: 'ESLint Plugin Prefer Implicit',
   tagline: 'If the browser already knows it, don\'t repeat it.',
   favicon: 'img/logo.svg',
 
@@ -52,9 +52,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: '@k9n/eslint-plugin-prefer-implicit',
+      title: 'ESLint Plugin Prefer Implicit',
       logo: {
-        alt: '@k9n/eslint-plugin-prefer-implicit logo',
+        alt: 'ESLint Plugin Prefer Implicit logo',
         src: 'img/logo.svg',
       },
       items: [

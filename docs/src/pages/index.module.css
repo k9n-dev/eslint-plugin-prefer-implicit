@@ -17,7 +17,7 @@
 }
 
 .logo {
-  width: 200px;
+  width: 300px;
   height: auto;
 }
 
@@ -56,6 +56,12 @@
 .feature {
   text-align: center;
   padding: 1.5rem;
+
+      border: 1px solid var(--ifm-color-secondary-lightest);
+    border-radius: 12px;
+    height: 100%;
+    background-color: var(--ifm-color-secondary-lightest);
+    transition: border-color .25s, background-color .25s;
 }
 
 .featureEmoji {
@@ -83,7 +89,7 @@
   }
 
   .logo {
-    width: 140px;
+    width: 180px;
   }
 
   .title {
