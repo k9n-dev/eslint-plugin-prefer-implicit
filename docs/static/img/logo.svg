@@ -8,27 +8,27 @@
       <!-- Outer hexagon frame -->
       <path d="m273.336 124.488l-57.867-100.672c-2.102-3.64-5.985-6.325-10.188-6.325h-115.736c-4.204 0-8.088 2.685-10.19 6.325l-57.867 100.45c-2.102 3.641-2.102 8.236 0 11.877l57.867 99.847c2.102 3.64 5.986 5.501 10.19 5.501h115.735c4.203 0 8.087-1.805 10.188-5.446l57.867-100.01c2.104-3.639 2.104-7.907.001-11.547m-47.917 48.41c0 1.48-.891 2.849-2.174 3.59l-73.71 42.527c-1.282.74-2.888.74-4.17 0l-73.767-42.527c-1.282-.741-2.179-2.109-2.179-3.59v-85.055c0-1.481.884-2.849 2.167-3.59l73.707-42.527c1.282-.741 2.886-.741 4.168 0l73.772 42.527c1.283.741 2.186 2.109 2.186 3.59z" fill="#4b32c3"/>
 
-      <!-- White border layer (drawn first, thicker strokes) -->
-      <g transform="translate(100, 132) scale(1.8)" stroke="white" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none">
-        <path d="M-6,-36 Q-6,-42 0,-42 Q6,-42 6,-36"/>
-        <line x1="-20" y1="-30" x2="22" y2="-30"/>
-        <path d="M-18,-20 L-10,28 L12,28 " stroke-width="13"/>
-        <path d="M40,-24 L23,28 " stroke-width="16"/>
-        <path d="M55,-24 70,2 L55,28" stroke-width="16"/>
+      <!-- White border layer (drawn first, +6 stroke width for 3px border) -->
+      <g transform="translate(95, 132) scale(1.7)" stroke="white" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <!-- <path d="M-6,-30 Q-6,-35 0,-35 Q6,-35 6,-30" stroke-width="16"/> -->
+        <line x1="-8" y1="-21" x2="15" y2="-21" stroke-width="16"/>
+        <path d="M-18,-20 L-10,28 L12,28 " stroke-width="18"/>
+        <path d="M50,-24 L30,28 " stroke-width="21"/>
+        <path d="M68,-24 85,2 L68,28" stroke-width="21"/>
       </g>
 
       <!-- Trash can icon with /> forming the right wall -->
-      <g transform="translate(100, 132) scale(1.8)" stroke="#8080ea" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <g transform="translate(95, 132) scale(1.7)" stroke="#8080ea" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
         <!-- Lid handle (small arch) -->
-        <path d="M-6,-36 Q-6,-42 0,-42 Q6,-42 6,-36"/>
+        <!-- <path d="M-6,-30 Q-6,-35 0,-35 Q6,-35 6,-30" stroke-width="8"/> -->
         <!-- Lid bar -->
-        <line x1="-20" y1="-30" x2="22" y2="-30"/>
+        <line x1="-8" y1="-21" x2="15" y2="-21" stroke-width="8"/>
 
         <!-- Trash body outline as single path:
              Left wall (tapered) -> bottom -> right wall as \> -->
-        <path d="M-18,-20 L-10,28 L12,28 " stroke-width="7"/>
-        <path d="M40,-24 L23,28 " stroke-width="10"/>
-        <path d="M55,-24 70,2 L55,28" stroke-width="10"/>
+        <path d="M-18,-20 L-10,28 L12,28 " stroke-width="10"/>
+        <path d="M50,-24 L30,28 " stroke-width="13"/>
+        <path d="M68,-24 85,2 L68,28" stroke-width="13"/>
       </g>
    </g>
 </svg>
