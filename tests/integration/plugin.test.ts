@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
+import { createRequire } from "node:module";
 import plugin from "../../src/index.js";
+
+const require = createRequire(import.meta.url);
+const { version } = require("../../package.json") as { version: string };
 
 const EXPECTED_RULES = [
   "no-redundant-role",
@@ -23,7 +27,7 @@ describe("plugin entry point", () => {
   it("meta contains name and version", () => {
     expect(plugin.meta).toBeDefined();
     expect(plugin.meta!.name).toBe("@k9n/eslint-plugin-prefer-implicit");
-    expect(plugin.meta!.version).toBe("0.1.2");
+    expect(plugin.meta!.version).toBe(version);
   });
 
   // Req 2.4: namespace is prefer-implicit

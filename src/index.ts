@@ -1,3 +1,4 @@
+import { createRequire } from "node:module";
 import type { ESLint } from "eslint";
 
 import noRedundantRole from "./rules/no-redundant-role.js";
@@ -7,10 +8,13 @@ import noUnsupportedAria from "./rules/no-unsupported-aria.js";
 import noDefaultAria from "./rules/no-default-aria.js";
 import noHiddenFocusable from "./rules/no-hidden-focusable.js";
 
+const require = createRequire(import.meta.url);
+const { version } = require("../package.json") as { version: string };
+
 const plugin: ESLint.Plugin = {
   meta: {
     name: "@k9n/eslint-plugin-prefer-implicit",
-    version: "0.1.2",
+    version,
   },
   rules: {
     "no-redundant-role": noRedundantRole,
