@@ -246,6 +246,9 @@ export function isDynamicValue(node: any, attributeName: string): boolean {
 /**
  * Returns the AST node for a specific attribute, or `null` if not found.
  * Used by the autofix engine to get the range for removal.
+ *
+ * For Angular template nodes that lack a `range` property, the range is
+ * synthesised from `sourceSpan` so that ESLint's fixer can operate on them.
  */
 export function getAttributeNode(node: any, attributeName: string): any | null {
   const attrs = getAttributes(node);
@@ -253,6 +256,15 @@ export function getAttributeNode(node: any, attributeName: string): any | null {
   for (const attr of attrs) {
     const name = getAttrName(attr);
     if (name !== null && name.toLowerCase() === attributeName.toLowerCase()) {
+      // Angular TextAttribute / BoundAttribute nodes use sourceSpan instead
+      // of range. Synthesise a range so ESLint's fixer.remove() works.
+      if (!attr.range && attr.sourceSpan) {
+        const start = attr.sourceSpan.start?.offset;
+        const end = attr.sourceSpan.end?.offset;
+        if (typeof start === "number" && typeof end === "number") {
+          attr.range = [start, end];
+        }
+      }
       return attr;
     }
   }

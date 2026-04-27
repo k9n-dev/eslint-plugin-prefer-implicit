@@ -13,6 +13,7 @@ import {
   getStaticAttributeValue,
   getAttributeNode,
 } from "../utils/attribute-utils.js";
+import { createElementVisitors } from "../utils/create-visitors.js";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -124,14 +125,7 @@ const rule: Rule.RuleModule = {
     },
   },
   create(context) {
-    return {
-      JSXOpeningElement(node: any) {
-        checkElement(context, node);
-      },
-      VElement(node: any) {
-        checkElement(context, node);
-      },
-    };
+    return createElementVisitors(context, checkElement);
   },
 };
 

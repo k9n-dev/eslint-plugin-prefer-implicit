@@ -338,14 +338,72 @@ Disallow elements that are both focusable and hidden from assistive technologies
 
 ## Framework Support
 
-This plugin works with multiple frameworks and template syntaxes:
+This plugin works with multiple frameworks and template syntaxes. It operates on AST nodes provided by the respective parsers and does not parse templates itself.
 
-- **JSX / React** — Analyzes JSX elements directly
-- **Vue** — Works with `vue-eslint-parser` for `.vue` single-file component templates
-- **Angular** — Works with `angular-eslint` for Angular template syntax
-- **Plain HTML** — Works with HTML ESLint parsers
+### React / JSX
 
-The plugin operates on AST nodes provided by the respective parsers. It does not parse templates itself.
+Works out of the box with ESLint's built-in JSX support:
+
+```js
+// eslint.config.mjs
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
+
+export default [
+  // ... your existing config
+  {
+    files: ["**/*.tsx"],
+    ...preferImplicit.configs.recommended,
+  },
+];
+```
+
+### Vue
+
+Works with `vue-eslint-parser` for `.vue` single-file component templates. The plugin automatically uses `defineTemplateBodyVisitor` to traverse template nodes:
+
+```js
+// eslint.config.ts
+import pluginVue from "eslint-plugin-vue";
+import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
+
+export default [
+  // ... your existing Vue config (must set up vue-eslint-parser)
+  pluginVue.configs["flat/essential"],
+  {
+    files: ["**/*.vue"],
+    ...preferImplicit.configs.recommended,
+  },
+];
+```
+
+### Angular
+
+Works with `@angular-eslint/template-parser` for Angular template syntax. Add the plugin config as a separate config object after the Angular template config:
+
+```js
+// eslint.config.js
+const angular = require("angular-eslint");
+const preferImplicit = require("@k9n/eslint-plugin-prefer-implicit");
+
+module.exports = [
+  // ... your existing Angular config
+  {
+    files: ["**/*.html"],
+    extends: [
+      ...angular.configs.templateRecommended,
+      ...angular.configs.templateAccessibility,
+    ],
+  },
+  {
+    files: ["**/*.html"],
+    ...preferImplicit.default.configs.recommended,
+  },
+];
+```
+
+### Plain HTML
+
+Works with HTML ESLint parsers for static HTML files.
 
 ## Static vs Dynamic Detection
 
