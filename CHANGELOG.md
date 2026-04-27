@@ -1,5 +1,15 @@
 # @k9n/eslint-plugin-prefer-implicit
 
+## 0.2.0
+
+### Minor Changes
+
+- feat: introduce whitespace-aware attribute removal
+
+### Patch Changes
+
+- fix: expand framework support for vue and angular
+
 ## 0.1.3
 
 ### Patch Changes
