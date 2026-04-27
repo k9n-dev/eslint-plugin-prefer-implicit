@@ -55,103 +55,103 @@ tester.run("no-destructive-role", rule, {
     // Req 4.1: <button role="none"> is destructive
     {
       code: '<button role="none" />',
-      output: "<button  />",
+      output: "<button />",
       errors: [{ messageId: "destructiveRole" }],
     },
     // <button role="presentation"> is also destructive
     {
       code: '<button role="presentation" />',
-      output: "<button  />",
+      output: "<button />",
       errors: [{ messageId: "destructiveRole" }],
     },
 
     // Req 4.2: <a href="#" role="presentation"> is destructive
     {
       code: '<a href="#" role="presentation">click</a>',
-      output: '<a href="#" >click</a>',
+      output: '<a href="#">click</a>',
       errors: [{ messageId: "destructiveRole" }],
     },
     // <a href="#" role="none"> is also destructive
     {
       code: '<a href="#" role="none">click</a>',
-      output: '<a href="#" >click</a>',
+      output: '<a href="#">click</a>',
       errors: [{ messageId: "destructiveRole" }],
     },
 
     // Req 4.3: <ul role="presentation"> is destructive (structural element)
     {
       code: '<ul role="presentation"><li>item</li></ul>',
-      output: "<ul ><li>item</li></ul>",
+      output: "<ul><li>item</li></ul>",
       errors: [{ messageId: "destructiveRole" }],
     },
     // <ul role="none"> is also destructive
     {
       code: '<ul role="none"><li>item</li></ul>',
-      output: "<ul ><li>item</li></ul>",
+      output: "<ul><li>item</li></ul>",
       errors: [{ messageId: "destructiveRole" }],
     },
 
     // Additional interactive elements
     {
       code: '<input role="none" />',
-      output: "<input  />",
+      output: "<input />",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<select role="presentation" />',
-      output: "<select  />",
+      output: "<select />",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<textarea role="none" />',
-      output: "<textarea  />",
+      output: "<textarea />",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<summary role="presentation">details</summary>',
-      output: "<summary >details</summary>",
+      output: "<summary>details</summary>",
       errors: [{ messageId: "destructiveRole" }],
     },
 
     // Additional structural elements
     {
       code: '<ol role="none"><li>one</li></ol>',
-      output: "<ol ><li>one</li></ol>",
+      output: "<ol><li>one</li></ol>",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<li role="presentation">item</li>',
-      output: "<li >item</li>",
+      output: "<li>item</li>",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<table role="none"><tr><td>cell</td></tr></table>',
-      output: "<table ><tr><td>cell</td></tr></table>",
+      output: "<table><tr><td>cell</td></tr></table>",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<tr role="presentation"><td>cell</td></tr>',
-      output: "<tr ><td>cell</td></tr>",
+      output: "<tr><td>cell</td></tr>",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<td role="none">cell</td>',
-      output: "<td >cell</td>",
+      output: "<td>cell</td>",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<th role="presentation">header</th>',
-      output: "<th >header</th>",
+      output: "<th>header</th>",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<menu role="none"><li>item</li></menu>',
-      output: "<menu ><li>item</li></menu>",
+      output: "<menu><li>item</li></menu>",
       errors: [{ messageId: "destructiveRole" }],
     },
     {
       code: '<dl role="presentation"><dt>term</dt><dd>def</dd></dl>',
-      output: "<dl ><dt>term</dt><dd>def</dd></dl>",
+      output: "<dl><dt>term</dt><dd>def</dd></dl>",
       errors: [{ messageId: "destructiveRole" }],
     },
   ],

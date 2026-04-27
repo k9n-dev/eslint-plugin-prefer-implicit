@@ -58,72 +58,72 @@ tester.run("no-hidden-focusable", rule, {
     // Req 8.1: <button aria-hidden="true"> — natively focusable + hidden
     {
       code: '<button aria-hidden="true" />',
-      output: "<button  />",
+      output: "<button />",
       errors: [{ messageId: "hiddenFocusable" }],
     },
 
     // Req 8.2: <a href="#" aria-hidden="true"> — focusable link + hidden
     {
       code: '<a href="#" aria-hidden="true">click</a>',
-      output: '<a href="#" >click</a>',
+      output: '<a href="#">click</a>',
       errors: [{ messageId: "hiddenFocusable" }],
     },
 
     // Req 8.3: <div tabindex="0" aria-hidden="true"> — tabindex makes it focusable
     {
       code: '<div tabindex="0" aria-hidden="true" />',
-      output: '<div tabindex="0"  />',
+      output: '<div tabindex="0" />',
       errors: [{ messageId: "hiddenFocusable" }],
     },
 
     // Additional interactive elements with aria-hidden="true"
     {
       code: '<input aria-hidden="true" />',
-      output: "<input  />",
+      output: "<input />",
       errors: [{ messageId: "hiddenFocusable" }],
     },
     {
       code: '<select aria-hidden="true" />',
-      output: "<select  />",
+      output: "<select />",
       errors: [{ messageId: "hiddenFocusable" }],
     },
     {
       code: '<textarea aria-hidden="true" />',
-      output: "<textarea  />",
+      output: "<textarea />",
       errors: [{ messageId: "hiddenFocusable" }],
     },
     {
       code: '<details aria-hidden="true">content</details>',
-      output: "<details >content</details>",
+      output: "<details>content</details>",
       errors: [{ messageId: "hiddenFocusable" }],
     },
     {
       code: '<summary aria-hidden="true">toggle</summary>',
-      output: "<summary >toggle</summary>",
+      output: "<summary>toggle</summary>",
       errors: [{ messageId: "hiddenFocusable" }],
     },
     {
       code: '<iframe aria-hidden="true" />',
-      output: "<iframe  />",
+      output: "<iframe />",
       errors: [{ messageId: "hiddenFocusable" }],
     },
     {
       code: '<embed aria-hidden="true" />',
-      output: "<embed  />",
+      output: "<embed />",
       errors: [{ messageId: "hiddenFocusable" }],
     },
 
     // Positive tabindex with aria-hidden="true"
     {
       code: '<span tabindex="1" aria-hidden="true">text</span>',
-      output: '<span tabindex="1" >text</span>',
+      output: '<span tabindex="1">text</span>',
       errors: [{ messageId: "hiddenFocusable" }],
     },
 
     // tabindex="0" on non-interactive element
     {
       code: '<p tabindex="0" aria-hidden="true">text</p>',
-      output: '<p tabindex="0" >text</p>',
+      output: '<p tabindex="0">text</p>',
       errors: [{ messageId: "hiddenFocusable" }],
     },
   ],

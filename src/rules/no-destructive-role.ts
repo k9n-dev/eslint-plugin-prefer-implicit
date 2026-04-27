@@ -19,6 +19,7 @@ import {
   getAttributeNode,
 } from "../utils/attribute-utils.js";
 import { createElementVisitors } from "../utils/create-visitors.js";
+import { removeAttribute } from "../utils/fix-utils.js";
 
 /**
  * Checks an element node for a destructive role attribute and reports
@@ -52,7 +53,7 @@ function checkElement(context: Rule.RuleContext, node: any): void {
       data: { element: elementName, role },
       fix(fixer) {
         if (attrNode) {
-          return fixer.remove(attrNode);
+          return removeAttribute(context, fixer, attrNode);
         }
         return null;
       },

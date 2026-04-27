@@ -66,21 +66,21 @@ tester.run("no-unsupported-aria", rule, {
     // (div has no implicit role in the map, so we use an explicit role)
     {
       code: '<div role="generic" aria-checked="true" />',
-      output: '<div role="generic"  />',
+      output: '<div role="generic" />',
       errors: [{ messageId: "unsupportedAria" }],
     },
 
     // Req 6.2: <button> (implicit role "button") does not support aria-valuenow
     {
       code: '<button aria-valuenow="5" />',
-      output: "<button  />",
+      output: "<button />",
       errors: [{ messageId: "unsupportedAria" }],
     },
 
     // Req 6.3: <img> (implicit role "img") does not support aria-expanded
     {
       code: '<img aria-expanded="true" />',
-      output: "<img  />",
+      output: "<img />",
       errors: [{ messageId: "unsupportedAria" }],
     },
 
@@ -88,42 +88,42 @@ tester.run("no-unsupported-aria", rule, {
     // <nav> (implicit role "navigation") does not support aria-checked
     {
       code: '<nav aria-checked="true">links</nav>',
-      output: "<nav >links</nav>",
+      output: "<nav>links</nav>",
       errors: [{ messageId: "unsupportedAria" }],
     },
 
     // <button> does not support aria-selected
     {
       code: '<button aria-selected="true" />',
-      output: "<button  />",
+      output: "<button />",
       errors: [{ messageId: "unsupportedAria" }],
     },
 
     // <img> does not support aria-pressed
     {
       code: '<img aria-pressed="true" />',
-      output: "<img  />",
+      output: "<img />",
       errors: [{ messageId: "unsupportedAria" }],
     },
 
     // Explicit role overrides implicit — div with role="button" does not support aria-valuenow
     {
       code: '<div role="button" aria-valuenow="5" />',
-      output: '<div role="button"  />',
+      output: '<div role="button" />',
       errors: [{ messageId: "unsupportedAria" }],
     },
 
     // <a href> has implicit role "link" which does not support aria-checked
     {
       code: '<a href="#" aria-checked="true">link</a>',
-      output: '<a href="#" >link</a>',
+      output: '<a href="#">link</a>',
       errors: [{ messageId: "unsupportedAria" }],
     },
 
     // Multiple unsupported attributes on one element — each reported separately
     {
       code: '<img aria-expanded="true" aria-checked="false" />',
-      output: "<img   />",
+      output: '<img aria-checked="false" />',
       errors: [
         { messageId: "unsupportedAria" },
         { messageId: "unsupportedAria" },
@@ -133,7 +133,7 @@ tester.run("no-unsupported-aria", rule, {
     // Autofix preserves other attributes (Req 11.8)
     {
       code: '<button aria-valuenow="5" aria-label="Submit">click</button>',
-      output: '<button  aria-label="Submit">click</button>',
+      output: '<button aria-label="Submit">click</button>',
       errors: [{ messageId: "unsupportedAria" }],
     },
   ],

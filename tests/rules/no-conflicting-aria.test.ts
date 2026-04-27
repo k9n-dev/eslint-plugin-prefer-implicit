@@ -54,63 +54,63 @@ tester.run("no-conflicting-aria", rule, {
     // Req 5.1: role="alert" implies aria-live="assertive", but aria-live="polite" conflicts
     {
       code: '<div role="alert" aria-live="polite" />',
-      output: '<div role="alert"  />',
+      output: '<div role="alert" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // Req 5.2: role="status" implies aria-live="polite", but aria-live="assertive" conflicts
     {
       code: '<div role="status" aria-live="assertive" />',
-      output: '<div role="status"  />',
+      output: '<div role="status" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // Req 5.3: role="log" implies aria-live="polite", but aria-live="assertive" conflicts
     {
       code: '<div role="log" aria-live="assertive" />',
-      output: '<div role="log"  />',
+      output: '<div role="log" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // role="alert" with aria-live="off" conflicts (assertive expected)
     {
       code: '<div role="alert" aria-live="off" />',
-      output: '<div role="alert"  />',
+      output: '<div role="alert" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // role="status" with aria-live="off" conflicts (polite expected)
     {
       code: '<div role="status" aria-live="off" />',
-      output: '<div role="status"  />',
+      output: '<div role="status" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // role="log" with aria-live="off" conflicts (polite expected)
     {
       code: '<div role="log" aria-live="off" />',
-      output: '<div role="log"  />',
+      output: '<div role="log" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // role="marquee" implies aria-live="off", but aria-live="polite" conflicts
     {
       code: '<div role="marquee" aria-live="polite" />',
-      output: '<div role="marquee"  />',
+      output: '<div role="marquee" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // role="timer" implies aria-live="off", but aria-live="assertive" conflicts
     {
       code: '<div role="timer" aria-live="assertive" />',
-      output: '<div role="timer"  />',
+      output: '<div role="timer" />',
       errors: [{ messageId: "conflictingAria" }],
     },
 
     // Verify autofix works on elements with additional attributes (Req 5.4)
     {
       code: '<section role="alert" aria-live="polite" class="banner">content</section>',
-      output: '<section role="alert"  class="banner">content</section>',
+      output: '<section role="alert" class="banner">content</section>',
       errors: [{ messageId: "conflictingAria" }],
     },
   ],

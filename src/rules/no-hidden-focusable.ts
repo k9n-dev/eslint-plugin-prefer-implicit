@@ -15,6 +15,7 @@ import {
   getAttributeNode,
 } from "../utils/attribute-utils.js";
 import { createElementVisitors } from "../utils/create-visitors.js";
+import { removeAttribute } from "../utils/fix-utils.js";
 
 /**
  * Checks an element node for a hidden-focusable conflict and reports
@@ -64,7 +65,7 @@ function checkElement(context: Rule.RuleContext, node: any): void {
     data: { element: elementLabel! },
     fix(fixer) {
       if (attrNode) {
-        return fixer.remove(attrNode);
+        return removeAttribute(context, fixer, attrNode);
       }
       return null;
     },

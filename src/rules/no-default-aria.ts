@@ -14,6 +14,7 @@ import {
   getAttributeNode,
 } from "../utils/attribute-utils.js";
 import { createElementVisitors } from "../utils/create-visitors.js";
+import { removeAttribute } from "../utils/fix-utils.js";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -83,7 +84,7 @@ function checkElement(context: Rule.RuleContext, node: any): void {
           messageId: "emptyAriaValue",
           data: { attribute: name },
           fix(fixer) {
-            return fixer.remove(reportNode);
+            return removeAttribute(context, fixer, reportNode);
           },
         });
       }
@@ -96,7 +97,7 @@ function checkElement(context: Rule.RuleContext, node: any): void {
           messageId: "defaultAriaValue",
           data: { attribute: name, value },
           fix(fixer) {
-            return fixer.remove(reportNode);
+            return removeAttribute(context, fixer, reportNode);
           },
         });
       }

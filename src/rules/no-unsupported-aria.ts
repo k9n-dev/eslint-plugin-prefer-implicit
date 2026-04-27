@@ -26,6 +26,7 @@ import {
   isDynamicValue,
 } from "../utils/attribute-utils.js";
 import { createElementVisitors } from "../utils/create-visitors.js";
+import { removeAttribute } from "../utils/fix-utils.js";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -123,7 +124,7 @@ function checkElement(context: Rule.RuleContext, node: any): void {
         data: { attribute: name, role: effectiveRole },
         fix(fixer) {
           if (reportNode) {
-            return fixer.remove(reportNode);
+            return removeAttribute(context, fixer, reportNode);
           }
           return null;
         },
