@@ -35,6 +35,8 @@ npm install --save-dev @k9n/eslint-plugin-prefer-implicit
 
 The recommended config enables all six rules at `"warn"` severity:
 
+**ESM (import):**
+
 ```js
 // eslint.config.js
 import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
@@ -42,9 +44,20 @@ import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 export default [preferImplicit.configs.recommended];
 ```
 
+**CommonJS (require):**
+
+```js
+// eslint.config.js
+const preferImplicit = require("@k9n/eslint-plugin-prefer-implicit");
+
+module.exports = [preferImplicit.default.configs.recommended];
+```
+
 ### Manual configuration
 
 You can also configure individual rules:
+
+**ESM (import):**
 
 ```js
 // eslint.config.js
@@ -54,6 +67,29 @@ export default [
   {
     plugins: {
       "prefer-implicit": preferImplicit,
+    },
+    rules: {
+      "prefer-implicit/no-redundant-role": "warn",
+      "prefer-implicit/no-destructive-role": "error",
+      "prefer-implicit/no-conflicting-aria": "warn",
+      "prefer-implicit/no-unsupported-aria": "warn",
+      "prefer-implicit/no-default-aria": "warn",
+      "prefer-implicit/no-hidden-focusable": "error",
+    },
+  },
+];
+```
+
+**CommonJS (require):**
+
+```js
+// eslint.config.js
+const preferImplicit = require("@k9n/eslint-plugin-prefer-implicit");
+
+module.exports = [
+  {
+    plugins: {
+      "prefer-implicit": preferImplicit.default,
     },
     rules: {
       "prefer-implicit/no-redundant-role": "warn",

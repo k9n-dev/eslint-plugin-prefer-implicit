@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Getting Started
 
 **@k9n/eslint-plugin-prefer-implicit** is an ESLint plugin that enforces implicit HTML semantics over explicit ARIA attributes and roles.
@@ -27,11 +30,26 @@ This plugin requires **ESLint ^10.0.0** with flat config.
 
 Use the recommended config to enable all six rules at `"warn"` severity:
 
+<Tabs>
+<TabItem value="esm" label="ESM (import)" default>
+
 ```js title="eslint.config.js"
 import preferImplicit from "@k9n/eslint-plugin-prefer-implicit";
 
 export default [preferImplicit.configs.recommended];
 ```
+
+</TabItem>
+<TabItem value="cjs" label="CommonJS (require)">
+
+```js title="eslint.config.js"
+const preferImplicit = require("@k9n/eslint-plugin-prefer-implicit");
+
+module.exports = [preferImplicit.default.configs.recommended];
+```
+
+</TabItem>
+</Tabs>
 
 That's it! See [Configuration](./configuration) for more options.
 
