@@ -12,6 +12,11 @@ const EXPECTED_RULES = [
   "no-unsupported-aria",
   "no-default-aria",
   "no-hidden-focusable",
+  "no-invalid-role",
+  "no-redundant-aria",
+  "no-abstract-role",
+  "no-aria-on-non-semantic",
+  "no-positive-tabindex",
 ] as const;
 
 describe("plugin entry point", () => {
@@ -35,8 +40,8 @@ describe("plugin entry point", () => {
     expect(plugin.meta!.name).toContain("prefer-implicit");
   });
 
-  // Req 2.1: rules object contains all six rule names
-  it("rules object contains all six rules", () => {
+  // Req 2.1: rules object contains all eleven rule names
+  it("rules object contains all eleven rules", () => {
     expect(plugin.rules).toBeDefined();
     const ruleNames = Object.keys(plugin.rules!);
     for (const name of EXPECTED_RULES) {
@@ -64,8 +69,8 @@ describe("configs.recommended", () => {
     expect(recommended).toBeDefined();
   });
 
-  // Req 2.2: recommended preset enables all six rules at warn severity
-  it("enables all six rules at warn severity under prefer-implicit namespace", () => {
+  // Req 2.2: recommended preset enables all eleven rules at warn severity
+  it("enables all eleven rules at warn severity under prefer-implicit namespace", () => {
     expect(recommended.rules).toBeDefined();
 
     for (const name of EXPECTED_RULES) {
@@ -74,7 +79,7 @@ describe("configs.recommended", () => {
       expect(recommended.rules[fullName]).toBe("warn");
     }
 
-    // No extra rules beyond the six
+    // No extra rules beyond the eleven
     const ruleKeys = Object.keys(recommended.rules);
     expect(ruleKeys).toHaveLength(EXPECTED_RULES.length);
   });

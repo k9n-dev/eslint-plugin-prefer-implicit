@@ -7,6 +7,9 @@ import {
   INTERACTIVE_ELEMENTS,
   STRUCTURAL_ELEMENTS,
   DESTRUCTIVE_ROLES,
+  VALID_ARIA_ROLES,
+  ABSTRACT_ROLES,
+  IMPLICIT_ARIA_VALUES,
 } from "../../src/utils/aria-data.js";
 import type { ImplicitRoleEntry } from "../../src/utils/aria-data.js";
 
@@ -280,5 +283,103 @@ describe("DESTRUCTIVE_ROLES", () => {
     expect(DESTRUCTIVE_ROLES.has("button")).toBe(false);
     expect(DESTRUCTIVE_ROLES.has("link")).toBe(false);
     expect(DESTRUCTIVE_ROLES.has("generic")).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// VALID_ARIA_ROLES
+// ---------------------------------------------------------------------------
+
+describe("VALID_ARIA_ROLES", () => {
+  it("is non-empty", () => {
+    expect(VALID_ARIA_ROLES.size).toBeGreaterThan(0);
+  });
+
+  it("contains expected concrete roles", () => {
+    for (const role of ["button", "link", "alert", "dialog", "navigation", "heading", "list", "table", "form", "region"]) {
+      expect(VALID_ARIA_ROLES.has(role)).toBe(true);
+    }
+  });
+
+  it("contains all abstract roles", () => {
+    for (const role of ABSTRACT_ROLES) {
+      expect(VALID_ARIA_ROLES.has(role)).toBe(true);
+    }
+  });
+
+  it("does not contain gibberish strings", () => {
+    expect(VALID_ARIA_ROLES.has("superwidget")).toBe(false);
+    expect(VALID_ARIA_ROLES.has("foo")).toBe(false);
+    expect(VALID_ARIA_ROLES.has("")).toBe(false);
+  });
+
+  it("all entries are lowercase strings", () => {
+    for (const role of VALID_ARIA_ROLES) {
+      expect(role).toBe(role.toLowerCase());
+      expect(typeof role).toBe("string");
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// ABSTRACT_ROLES
+// ---------------------------------------------------------------------------
+
+describe("ABSTRACT_ROLES", () => {
+  it("contains exactly 12 entries", () => {
+    expect(ABSTRACT_ROLES.size).toBe(12);
+  });
+
+  it("contains all expected abstract roles", () => {
+    const expected = ["command", "composite", "input", "landmark", "range", "roletype", "section", "sectionhead", "select", "structure", "widget", "window"];
+    for (const role of expected) {
+      expect(ABSTRACT_ROLES.has(role)).toBe(true);
+    }
+  });
+
+  it("every entry is also present in VALID_ARIA_ROLES", () => {
+    for (const role of ABSTRACT_ROLES) {
+      expect(VALID_ARIA_ROLES.has(role)).toBe(true);
+    }
+  });
+
+  it("does not contain concrete roles", () => {
+    expect(ABSTRACT_ROLES.has("button")).toBe(false);
+    expect(ABSTRACT_ROLES.has("link")).toBe(false);
+    expect(ABSTRACT_ROLES.has("alert")).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// IMPLICIT_ARIA_VALUES
+// ---------------------------------------------------------------------------
+
+describe("IMPLICIT_ARIA_VALUES", () => {
+  it("is non-empty", () => {
+    expect(Object.keys(IMPLICIT_ARIA_VALUES).length).toBeGreaterThan(0);
+  });
+
+  it("h1 maps to aria-level 1", () => {
+    expect(IMPLICIT_ARIA_VALUES["h1"]).toEqual({ "aria-level": "1" });
+  });
+
+  it("h6 maps to aria-level 6", () => {
+    expect(IMPLICIT_ARIA_VALUES["h6"]).toEqual({ "aria-level": "6" });
+  });
+
+  it("progress maps to aria-valuemin 0 and aria-valuemax 100", () => {
+    expect(IMPLICIT_ARIA_VALUES["progress"]).toEqual({ "aria-valuemin": "0", "aria-valuemax": "100" });
+  });
+
+  it("hr maps to aria-orientation horizontal", () => {
+    expect(IMPLICIT_ARIA_VALUES["hr"]).toEqual({ "aria-orientation": "horizontal" });
+  });
+
+  it("all attribute names start with aria-", () => {
+    for (const element of Object.keys(IMPLICIT_ARIA_VALUES)) {
+      for (const attr of Object.keys(IMPLICIT_ARIA_VALUES[element])) {
+        expect(attr.startsWith("aria-")).toBe(true);
+      }
+    }
   });
 });

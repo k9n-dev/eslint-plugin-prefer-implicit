@@ -271,3 +271,171 @@ export const DESTRUCTIVE_ROLES: Set<string> = new Set([
   "none",
   "presentation",
 ]);
+
+// ---------------------------------------------------------------------------
+// 8. VALID_ARIA_ROLES
+// ---------------------------------------------------------------------------
+
+/**
+ * Set of all valid WAI-ARIA 1.2 role values (lowercase).
+ * Includes widget, document structure, landmark, live region, window/composite,
+ * and abstract roles. Used by the no-invalid-role rule to detect typos and
+ * invented roles.
+ *
+ * Note: Abstract roles are included because they ARE valid role names per the
+ * spec (they exist in the ontology). The no-invalid-role rule checks if a role
+ * *exists*; the no-abstract-role rule checks if it's *usable*.
+ */
+export const VALID_ARIA_ROLES: Set<string> = new Set([
+  // Widget roles
+  "button",
+  "checkbox",
+  "combobox",
+  "gridcell",
+  "link",
+  "menuitem",
+  "menuitemcheckbox",
+  "menuitemradio",
+  "option",
+  "progressbar",
+  "radio",
+  "scrollbar",
+  "searchbox",
+  "slider",
+  "spinbutton",
+  "switch",
+  "tab",
+  "tabpanel",
+  "textbox",
+  "treeitem",
+  // Document structure roles
+  "application",
+  "article",
+  "blockquote",
+  "caption",
+  "cell",
+  "code",
+  "columnheader",
+  "definition",
+  "deletion",
+  "dialog",
+  "directory",
+  "document",
+  "emphasis",
+  "feed",
+  "figure",
+  "generic",
+  "group",
+  "heading",
+  "img",
+  "insertion",
+  "list",
+  "listitem",
+  "mark",
+  "math",
+  "meter",
+  "none",
+  "note",
+  "paragraph",
+  "presentation",
+  "row",
+  "rowgroup",
+  "rowheader",
+  "separator",
+  "strong",
+  "subscript",
+  "superscript",
+  "table",
+  "term",
+  "time",
+  "toolbar",
+  "tooltip",
+  // Landmark roles
+  "banner",
+  "complementary",
+  "contentinfo",
+  "form",
+  "main",
+  "navigation",
+  "region",
+  "search",
+  // Live region roles
+  "alert",
+  "alertdialog",
+  "log",
+  "marquee",
+  "status",
+  "timer",
+  // Window/composite roles
+  "treegrid",
+  "tree",
+  "grid",
+  "listbox",
+  "menu",
+  "menubar",
+  "radiogroup",
+  "tablist",
+  // Abstract roles
+  "command",
+  "composite",
+  "input",
+  "landmark",
+  "range",
+  "roletype",
+  "section",
+  "sectionhead",
+  "select",
+  "structure",
+  "widget",
+  "window",
+]);
+
+// ---------------------------------------------------------------------------
+// 9. ABSTRACT_ROLES
+// ---------------------------------------------------------------------------
+
+/**
+ * Set of the 12 abstract WAI-ARIA roles that exist only as ontological
+ * superclasses and must not be used by content authors.
+ * Used by the no-abstract-role rule.
+ */
+export const ABSTRACT_ROLES: Set<string> = new Set([
+  "command",
+  "composite",
+  "input",
+  "landmark",
+  "range",
+  "roletype",
+  "section",
+  "sectionhead",
+  "select",
+  "structure",
+  "widget",
+  "window",
+]);
+
+// ---------------------------------------------------------------------------
+// 10. IMPLICIT_ARIA_VALUES
+// ---------------------------------------------------------------------------
+
+/**
+ * Maps HTML element names to their implicit ARIA attribute values.
+ * This is distinct from `IMPLICIT_ROLE_MAP` (which maps elements to roles) —
+ * this maps elements to the ARIA *attribute values* they imply by default.
+ * Used by the no-redundant-aria rule.
+ */
+export const IMPLICIT_ARIA_VALUES: Record<string, Record<string, string>> = {
+  h1: { "aria-level": "1" },
+  h2: { "aria-level": "2" },
+  h3: { "aria-level": "3" },
+  h4: { "aria-level": "4" },
+  h5: { "aria-level": "5" },
+  h6: { "aria-level": "6" },
+  input: { "aria-required": "false" },
+  textarea: { "aria-required": "false" },
+  select: { "aria-required": "false" },
+  details: { "aria-expanded": "false" },
+  dialog: { "aria-modal": "false" },
+  hr: { "aria-orientation": "horizontal" },
+  progress: { "aria-valuemin": "0", "aria-valuemax": "100" },
+};

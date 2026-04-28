@@ -14,6 +14,11 @@ const sidebars: SidebarsConfig = {
     'rules/no-unsupported-aria',
     'rules/no-default-aria',
     'rules/no-hidden-focusable',
+    'rules/no-invalid-role',
+    'rules/no-redundant-aria',
+    'rules/no-abstract-role',
+    'rules/no-aria-on-non-semantic',
+    'rules/no-positive-tabindex',
   ],
 };
 

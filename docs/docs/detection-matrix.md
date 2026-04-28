@@ -59,3 +59,47 @@ A complete overview of all patterns detected by the plugin.
 | I1 | `<button aria-hidden="true">` | Focusable but hidden | Remove aria-hidden |
 | I2 | `<a href aria-hidden="true">` | Contradiction | Remove aria-hidden |
 | I3 | `[tabindex] + aria-hidden` | Focusable but hidden | Remove aria-hidden |
+
+## Invalid Roles
+
+| ID | Pattern | Description | Autofix |
+| --- | --- | --- | --- |
+| V1 | `<div role="buton">` | Typo in role value | ❌ None |
+| V2 | `<div role="superwidget">` | Invented role | ❌ None |
+| V3 | `<nav role="nagivation">` | Misspelled landmark role | ❌ None |
+| V4 | `<div role="buttn checkbox">` | Invalid token in multi-value role | ❌ None |
+
+## Redundant ARIA Values
+
+| ID | Pattern | Description | Autofix |
+| --- | --- | --- | --- |
+| RA1 | `<h1 aria-level="1">` | Implicit heading level | Remove attribute |
+| RA2 | `<h2 aria-level="2">` | Implicit heading level | Remove attribute |
+| RA3 | `<hr aria-orientation="horizontal">` | Implicit orientation | Remove attribute |
+| RA4 | `<progress aria-valuemin="0">` | Implicit minimum | Remove attribute |
+| RA5 | `<progress aria-valuemax="100">` | Implicit maximum | Remove attribute |
+
+## Abstract Roles
+
+| ID | Pattern | Description | Autofix |
+| --- | --- | --- | --- |
+| AB1 | `<div role="widget">` | Abstract role used in markup | ❌ None |
+| AB2 | `<div role="landmark">` | Abstract role used in markup | ❌ None |
+| AB3 | `<div role="command">` | Abstract role used in markup | ❌ None |
+| AB4 | `<div role="composite">` | Abstract role used in markup | ❌ None |
+
+## ARIA on Presentation Elements
+
+| ID | Pattern | Description | Autofix |
+| --- | --- | --- | --- |
+| P1 | `<div role="none" aria-label="x">` | ARIA on presentation element | Remove attribute |
+| P2 | `<span role="presentation" aria-hidden="true">` | ARIA on presentation element | Remove attribute |
+| P3 | `<div role="none" aria-live="polite">` | ARIA on presentation element | Remove attribute |
+
+## Positive Tabindex
+
+| ID | Pattern | Description | Autofix |
+| --- | --- | --- | --- |
+| T1 | `<input tabindex="1">` | Positive tabindex disrupts tab order | ❌ None |
+| T2 | `<button tabindex="5">` | Positive tabindex disrupts tab order | ❌ None |
+| T3 | `<div tabindex="99">` | Positive tabindex disrupts tab order | ❌ None |

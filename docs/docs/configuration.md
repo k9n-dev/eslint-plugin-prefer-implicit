@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 ## Recommended Config
 
-The recommended config enables all six rules at `"warn"` severity:
+The recommended config enables all rules at `"warn"` severity:
 
 <Tabs>
 <TabItem value="esm" label="ESM (import)" default>
@@ -45,11 +45,16 @@ export default [
     },
     rules: {
       "prefer-implicit/no-redundant-role": "warn",
-      "prefer-implicit/no-destructive-role": "error",
+      "prefer-implicit/no-destructive-role": "warn",
       "prefer-implicit/no-conflicting-aria": "warn",
       "prefer-implicit/no-unsupported-aria": "warn",
       "prefer-implicit/no-default-aria": "warn",
-      "prefer-implicit/no-hidden-focusable": "error",
+      "prefer-implicit/no-hidden-focusable": "warn",
+      "prefer-implicit/no-invalid-role": "warn",
+      "prefer-implicit/no-redundant-aria": "warn",
+      "prefer-implicit/no-abstract-role": "warn",
+      "prefer-implicit/no-aria-on-non-semantic": "warn",
+      "prefer-implicit/no-positive-tabindex": "warn",
     },
   },
 ];
@@ -68,11 +73,16 @@ module.exports = [
     },
     rules: {
       "prefer-implicit/no-redundant-role": "warn",
-      "prefer-implicit/no-destructive-role": "error",
+      "prefer-implicit/no-destructive-role": "warn",
       "prefer-implicit/no-conflicting-aria": "warn",
       "prefer-implicit/no-unsupported-aria": "warn",
       "prefer-implicit/no-default-aria": "warn",
-      "prefer-implicit/no-hidden-focusable": "error",
+      "prefer-implicit/no-hidden-focusable": "warn",
+      "prefer-implicit/no-invalid-role": "warn",
+      "prefer-implicit/no-redundant-aria": "warn",
+      "prefer-implicit/no-abstract-role": "warn",
+      "prefer-implicit/no-aria-on-non-semantic": "warn",
+      "prefer-implicit/no-positive-tabindex": "warn",
     },
   },
 ];
