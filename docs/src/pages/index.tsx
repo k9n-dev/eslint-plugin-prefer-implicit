@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import styles from './index.module.css';
 
 const features = [
@@ -65,6 +66,21 @@ export default function Home(): React.JSX.Element {
               <p>{f.description}</p>
             </article>
           ))}
+        </section>
+
+        <section className={styles.demoSection}>
+          <div className={styles.demoInner}>
+            <h2 className={styles.demoTitle}>See it in action</h2>
+            <p className={styles.demoSubtitle}>
+              Watch the plugin detect and fix real a11y violations — step by step.
+            </p>
+            <BrowserOnly fallback={<div className={styles.demoFallback}>Loading demo…</div>}>
+              {() => {
+                const A11yDemo = require('../components/A11yDemo').default;
+                return <A11yDemo />;
+              }}
+            </BrowserOnly>
+          </div>
         </section>
       </main>
     </Layout>

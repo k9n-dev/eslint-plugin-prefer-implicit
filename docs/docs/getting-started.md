@@ -1,11 +1,21 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 # Getting Started
 
 **@k9n/eslint-plugin-prefer-implicit** is an ESLint plugin that enforces implicit HTML semantics over explicit ARIA attributes and roles.
 
 > **If the browser already knows it, don't repeat it.**
+
+See the plugin in action — violations are detected and fixed step by step:
+
+<BrowserOnly fallback={<div>Loading demo…</div>}>
+  {() => {
+    const A11yDemo = require('../src/components/A11yDemo').default;
+    return <A11yDemo />;
+  }}
+</BrowserOnly>
 
 ## Motivation
 

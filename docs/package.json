@@ -16,6 +16,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@codemovie/code-movie": "^0.0.43",
+    "@codemovie/code-movie-runtime": "^2.4.0",
     "@docusaurus/core": "3.10.0",
     "@docusaurus/faster": "3.10.0",
     "@docusaurus/preset-classic": "3.10.0",

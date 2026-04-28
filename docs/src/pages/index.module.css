@@ -105,3 +105,47 @@
     padding: 1rem 1.5rem 4rem;
   }
 }
+
+/* ── Demo section ─────────────────────────────────────────────────────────── */
+
+.demoSection {
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.04) 100%);
+  padding: 3rem 2rem 5rem;
+  border-top: 1px solid var(--ifm-color-secondary-lightest);
+}
+
+.demoInner {
+  max-width: 100%;
+  margin: 0 auto;
+  place-self: center;
+}
+
+.demoTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.demoSubtitle {
+  text-align: center;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.demoFallback {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ifm-color-emphasis-500);
+}
+
+@media (max-width: 768px) {
+  .demoSection {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .demoTitle {
+    font-size: 1.4rem;
+  }
+}
