@@ -159,9 +159,11 @@ describe("SUPPORTED_ARIA_BY_ROLE", () => {
     expect(SUPPORTED_ARIA_BY_ROLE["img"].has("aria-pressed")).toBe(false);
   });
 
-  it("none and presentation roles have empty supported sets", () => {
-    expect(SUPPORTED_ARIA_BY_ROLE["none"].size).toBe(0);
-    expect(SUPPORTED_ARIA_BY_ROLE["presentation"].size).toBe(0);
+  it("none and presentation roles have minimal supported sets", () => {
+    // aria-query: none has empty props (0), presentation has global props (17).
+    // The plugin adds 2 extra global attrs (aria-invalid, aria-errormessage) to all roles.
+    expect(SUPPORTED_ARIA_BY_ROLE["none"].size).toBe(2);       // 0 + 2 extras
+    expect(SUPPORTED_ARIA_BY_ROLE["presentation"].size).toBe(19); // 17 + 2 extras
   });
 
   it("every role maps to a Set instance", () => {

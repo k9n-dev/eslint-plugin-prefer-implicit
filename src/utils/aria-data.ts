@@ -1,9 +1,11 @@
 /**
  * Declarative lookup tables for ARIA/HTML semantics.
  *
- * Derived from the ARIA in HTML W3C Recommendation and WAI-ARIA 1.2 spec.
- * These tables power all six rules in the plugin.
+ * Where possible, data is derived from the `aria-query` package which tracks
+ * the WAI-ARIA 1.2 W3C Recommendation. Manual overrides are documented inline.
  */
+
+import { roles } from "aria-query";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -26,6 +28,10 @@ export interface ImplicitRoleEntry {
  * Maps HTML element names to their implicit ARIA role.
  * Conditional entries indicate the element must have a specific attribute
  * for the implicit role to apply (e.g. `<a>` requires `href`).
+ *
+ * Maintained manually: aria-query's elementRoles uses a different key format
+ * (JSON-serialised concept objects with optional attributes) that doesn't map
+ * cleanly to the simple element-name lookup this plugin needs.
  */
 export const IMPLICIT_ROLE_MAP: Record<string, ImplicitRoleEntry> = {
   a:        { role: "link",          condition: { attribute: "href" } },
@@ -77,12 +83,20 @@ export const IMPLICIT_ROLE_MAP: Record<string, ImplicitRoleEntry> = {
 /**
  * Maps ARIA roles to their implied `aria-live` value.
  * Used by the no-conflicting-aria rule.
+ *
+ * Derived from aria-query (roles with non-null aria-live prop values), plus
+ * manual entries for `marquee` ("off") and `timer` ("off") which aria-query
+ * stores as null but the WAI-ARIA spec defines as implicitly "off".
  */
 export const ROLE_ARIA_LIVE_MAP: Record<string, string> = {
-  alert:   "assertive",
-  log:     "polite",
+  // Derived from aria-query
+  ...Object.fromEntries(
+    [...roles.entries()]
+      .filter(([, v]) => v.props["aria-live"] !== null && v.props["aria-live"] !== undefined)
+      .map(([k, v]) => [k, v.props["aria-live"] as string]),
+  ),
+  // Manual: WAI-ARIA spec defines these as implicitly "off", aria-query stores null
   marquee: "off",
-  status:  "polite",
   timer:   "off",
 };
 
@@ -90,105 +104,32 @@ export const ROLE_ARIA_LIVE_MAP: Record<string, string> = {
 // 3. SUPPORTED_ARIA_BY_ROLE
 // ---------------------------------------------------------------------------
 
-/** Global ARIA attributes supported by all roles. */
-const GLOBAL_ARIA = new Set<string>([
-  "aria-atomic",
-  "aria-busy",
-  "aria-controls",
-  "aria-current",
-  "aria-describedby",
-  "aria-details",
-  "aria-disabled",
-  "aria-dropeffect",
-  "aria-errormessage",
-  "aria-flowto",
-  "aria-grabbed",
-  "aria-haspopup",
-  "aria-hidden",
-  "aria-invalid",
-  "aria-keyshortcuts",
-  "aria-label",
-  "aria-labelledby",
-  "aria-live",
-  "aria-owns",
-  "aria-relevant",
-  "aria-roledescription",
-]);
-
-/** Helper to create a role's supported set from global + extras. */
-function withGlobal(...extras: string[]): Set<string> {
-  return new Set([...GLOBAL_ARIA, ...extras]);
-}
-
 /**
  * Maps ARIA roles to the set of `aria-*` attributes they support.
  * Used by the no-unsupported-aria rule.
+ *
+ * Derived from aria-query's role props. Each role's props object contains all
+ * supported aria-* attributes as keys (values are defaults or null).
+ *
+ * Manual additions:
+ * - `aria-invalid` and `aria-errormessage` are global ARIA attributes present
+ *   in the spec but missing from aria-query's props for some roles. We add
+ *   them to every role's supported set to avoid false positives.
  */
-export const SUPPORTED_ARIA_BY_ROLE: Record<string, Set<string>> = {
-  // Widget roles
-  button:        withGlobal("aria-expanded", "aria-pressed"),
-  link:          withGlobal("aria-expanded"),
-  checkbox:      withGlobal("aria-checked", "aria-expanded", "aria-readonly", "aria-required"),
-  combobox:      withGlobal(
-    "aria-activedescendant", "aria-autocomplete", "aria-expanded",
-    "aria-required", "aria-readonly",
-  ),
-  textbox:       withGlobal(
-    "aria-activedescendant", "aria-autocomplete", "aria-multiline",
-    "aria-placeholder", "aria-readonly", "aria-required",
-  ),
-  listbox:       withGlobal(
-    "aria-activedescendant", "aria-expanded", "aria-multiselectable",
-    "aria-orientation", "aria-readonly", "aria-required",
-  ),
-  option:        withGlobal("aria-checked", "aria-posinset", "aria-selected", "aria-setsize"),
 
-  // Structure roles
-  img:           withGlobal(),
-  generic:       withGlobal(),
-  list:          withGlobal(),
-  listitem:      withGlobal("aria-level", "aria-posinset", "aria-setsize"),
-  table:         withGlobal("aria-colcount", "aria-rowcount"),
-  row:           withGlobal(
-    "aria-colindex", "aria-expanded", "aria-level", "aria-posinset",
-    "aria-rowindex", "aria-selected", "aria-setsize",
-  ),
-  cell:          withGlobal("aria-colindex", "aria-colspan", "aria-rowindex", "aria-rowspan"),
-  columnheader:  withGlobal(
-    "aria-colindex", "aria-colspan", "aria-expanded", "aria-readonly",
-    "aria-required", "aria-rowindex", "aria-rowspan", "aria-selected", "aria-sort",
-  ),
-  rowgroup:      withGlobal(),
-  heading:       withGlobal("aria-expanded", "aria-level"),
+/** Extra global attributes that aria-query omits from some role props. */
+const EXTRA_GLOBAL = ["aria-invalid", "aria-errormessage"] as const;
 
-  // Landmark roles
-  navigation:    withGlobal(),
-  complementary: withGlobal(),
-  banner:        withGlobal(),
-  contentinfo:   withGlobal(),
-  main:          withGlobal(),
-  form:          withGlobal(),
+function buildSupportedSet(roleProps: Record<string, unknown>): Set<string> {
+  return new Set([...Object.keys(roleProps), ...EXTRA_GLOBAL]);
+}
 
-  // Sectioning roles
-  article:       withGlobal("aria-expanded"),
-  dialog:        withGlobal("aria-modal"),
-  group:         withGlobal("aria-activedescendant", "aria-expanded"),
-
-  // Separator (focusable variant adds widget attrs, but we use the non-focusable set)
-  separator:     withGlobal("aria-orientation", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext"),
-
-  // Live region roles
-  progressbar:   withGlobal("aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext"),
-  status:        withGlobal(),
-  alert:         withGlobal(),
-  log:           withGlobal(),
-  timer:         withGlobal(),
-  marquee:       withGlobal(),
-
-  // Roles that strip semantics
-  none:          new Set<string>(),
-  presentation:  new Set<string>(),
-};
+export const SUPPORTED_ARIA_BY_ROLE: Record<string, Set<string>> = Object.fromEntries(
+  [...roles.entries()].map(([roleName, roleDef]) => [
+    roleName,
+    buildSupportedSet(roleDef.props as unknown as Record<string, unknown>),
+  ]),
+);
 
 // ---------------------------------------------------------------------------
 // 4. DEFAULT_ARIA_VALUES
@@ -197,6 +138,10 @@ export const SUPPORTED_ARIA_BY_ROLE: Record<string, Set<string>> = {
 /**
  * Maps `aria-*` attributes to their specification-defined default values.
  * Used by the no-default-aria rule.
+ *
+ * Maintained manually: aria-query stores default values as the prop value
+ * (e.g. `"aria-atomic": "true"` for alert), but these are role-specific
+ * defaults, not the global attribute defaults this rule targets.
  */
 export const DEFAULT_ARIA_VALUES: Record<string, string> = {
   "aria-hidden":          "false",
@@ -277,142 +222,32 @@ export const DESTRUCTIVE_ROLES: Set<string> = new Set([
 // ---------------------------------------------------------------------------
 
 /**
- * Set of all valid WAI-ARIA 1.2 role values (lowercase).
- * Includes widget, document structure, landmark, live region, window/composite,
- * and abstract roles. Used by the no-invalid-role rule to detect typos and
- * invented roles.
+ * Set of all valid WAI-ARIA role values (lowercase).
+ * Derived directly from aria-query which tracks the WAI-ARIA 1.2 spec.
  *
- * Note: Abstract roles are included because they ARE valid role names per the
- * spec (they exist in the ontology). The no-invalid-role rule checks if a role
- * *exists*; the no-abstract-role rule checks if it's *usable*.
+ * Includes all roles: widget, document structure, landmark, live region,
+ * window/composite, and abstract roles. Abstract roles are included because
+ * they ARE valid role names per the spec (they exist in the ontology).
+ * The no-invalid-role rule checks if a role *exists*;
+ * the no-abstract-role rule checks if it's *usable*.
  */
-export const VALID_ARIA_ROLES: Set<string> = new Set([
-  // Widget roles
-  "button",
-  "checkbox",
-  "combobox",
-  "gridcell",
-  "link",
-  "menuitem",
-  "menuitemcheckbox",
-  "menuitemradio",
-  "option",
-  "progressbar",
-  "radio",
-  "scrollbar",
-  "searchbox",
-  "slider",
-  "spinbutton",
-  "switch",
-  "tab",
-  "tabpanel",
-  "textbox",
-  "treeitem",
-  // Document structure roles
-  "application",
-  "article",
-  "blockquote",
-  "caption",
-  "cell",
-  "code",
-  "columnheader",
-  "definition",
-  "deletion",
-  "dialog",
-  "directory",
-  "document",
-  "emphasis",
-  "feed",
-  "figure",
-  "generic",
-  "group",
-  "heading",
-  "img",
-  "insertion",
-  "list",
-  "listitem",
-  "mark",
-  "math",
-  "meter",
-  "none",
-  "note",
-  "paragraph",
-  "presentation",
-  "row",
-  "rowgroup",
-  "rowheader",
-  "separator",
-  "strong",
-  "subscript",
-  "superscript",
-  "table",
-  "term",
-  "time",
-  "toolbar",
-  "tooltip",
-  // Landmark roles
-  "banner",
-  "complementary",
-  "contentinfo",
-  "form",
-  "main",
-  "navigation",
-  "region",
-  "search",
-  // Live region roles
-  "alert",
-  "alertdialog",
-  "log",
-  "marquee",
-  "status",
-  "timer",
-  // Window/composite roles
-  "treegrid",
-  "tree",
-  "grid",
-  "listbox",
-  "menu",
-  "menubar",
-  "radiogroup",
-  "tablist",
-  // Abstract roles
-  "command",
-  "composite",
-  "input",
-  "landmark",
-  "range",
-  "roletype",
-  "section",
-  "sectionhead",
-  "select",
-  "structure",
-  "widget",
-  "window",
-]);
+export const VALID_ARIA_ROLES: Set<string> = new Set(roles.keys());
 
 // ---------------------------------------------------------------------------
 // 9. ABSTRACT_ROLES
 // ---------------------------------------------------------------------------
 
 /**
- * Set of the 12 abstract WAI-ARIA roles that exist only as ontological
- * superclasses and must not be used by content authors.
+ * Set of abstract WAI-ARIA roles that exist only as ontological superclasses
+ * and must not be used by content authors.
+ * Derived directly from aria-query (roles where abstract === true).
  * Used by the no-abstract-role rule.
  */
-export const ABSTRACT_ROLES: Set<string> = new Set([
-  "command",
-  "composite",
-  "input",
-  "landmark",
-  "range",
-  "roletype",
-  "section",
-  "sectionhead",
-  "select",
-  "structure",
-  "widget",
-  "window",
-]);
+export const ABSTRACT_ROLES: Set<string> = new Set(
+  [...roles.entries()]
+    .filter(([, v]) => v.abstract)
+    .map(([k]) => k),
+);
 
 // ---------------------------------------------------------------------------
 // 10. IMPLICIT_ARIA_VALUES
@@ -423,6 +258,9 @@ export const ABSTRACT_ROLES: Set<string> = new Set([
  * This is distinct from `IMPLICIT_ROLE_MAP` (which maps elements to roles) —
  * this maps elements to the ARIA *attribute values* they imply by default.
  * Used by the no-redundant-aria rule.
+ *
+ * Maintained manually: these are HTML-AAM implicit values, not ARIA role
+ * defaults. aria-query does not model this relationship.
  */
 export const IMPLICIT_ARIA_VALUES: Record<string, Record<string, string>> = {
   h1: { "aria-level": "1" },
