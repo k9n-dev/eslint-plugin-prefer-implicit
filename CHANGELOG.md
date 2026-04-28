@@ -1,5 +1,17 @@
 # @k9n/eslint-plugin-prefer-implicit
 
+## 0.3.0
+
+### Minor Changes
+
+- [`d6cfbf6`](https://github.com/k9n-dev/eslint-plugin-prefer-implicit/commit/d6cfbf6ad54971e6c661100e0cabba7ba74db7b8) Thanks [@d-koppenhagen](https://github.com/d-koppenhagen)! - Added five new ESLint rules:
+
+  - `no-invalid-role`: Detect invalid WAI-ARIA role values (typos, invented roles)
+  - `no-redundant-aria`: Detect ARIA attributes repeating implicit element values (fixable)
+  - `no-abstract-role`: Disallow abstract ARIA roles not intended for content authors
+  - `no-aria-on-non-semantic`: Warn on ARIA attributes on `role="none"`/`"presentation"` elements (fixable)
+  - `no-positive-tabindex`: Warn on `tabindex` > 0 disrupting natural tab order
+
 ## 0.2.2
 
 ### Patch Changes
