@@ -1,5 +1,11 @@
 # @k9n/eslint-plugin-prefer-implicit
 
+## 0.4.0
+
+### Minor Changes
+
+- [`35d97c5`](https://github.com/k9n-dev/eslint-plugin-prefer-implicit/commit/35d97c50dbdb92706b2bbfb1631af37d3d853111) Thanks [@d-koppenhagen](https://github.com/d-koppenhagen)! - feat: expand eslint peer dependency to support ESLint 9 as well
+
 ## 0.3.0
 
 ### Minor Changes
