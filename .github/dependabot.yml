@@ -25,13 +25,31 @@ updates:
         patterns:
           - "typescript"
           - "@types/*"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
       testing:
         patterns:
           - "vitest"
           - "fast-check"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
       changesets:
         patterns:
           - "@changesets/*"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   # Docs (Docusaurus)
   - package-ecosystem: "npm"
@@ -51,14 +69,32 @@ updates:
         patterns:
           - "@docusaurus/*"
           - "docusaurus"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
       react:
         patterns:
           - "react"
           - "react-dom"
           - "@types/react"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
       codemovie:
         patterns:
           - "@codemovie/*"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
@@ -71,3 +107,8 @@ updates:
       - "ci"
     commit-message:
       prefix: "ci"
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
